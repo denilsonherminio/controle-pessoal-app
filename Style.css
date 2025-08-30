@@ -11,15 +11,16 @@ body {
     color: #333;
     min-height: 100vh;
     line-height: 1.6;
+    font-size: 16px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 16px;
 }
 
-/* Header Responsivo */
+/* Header Otimizado para Mobile */
 .header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -31,40 +32,49 @@ body {
 
 .header-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0;
-    flex-wrap: wrap;
-    gap: 1rem;
+    padding: 12px 0;
+    gap: 12px;
 }
 
 .logo {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #667eea;
-    margin: 0;
-    white-space: nowrap;
+    text-align: center;
 }
 
 .nav-tabs {
     display: flex;
-    gap: 0.3rem;
-    flex-wrap: wrap;
+    gap: 6px;
+    overflow-x: auto;
+    width: 100%;
+    padding: 8px 0;
     justify-content: center;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .tab-btn {
-    background: transparent;
-    border: 2px solid #e0e6ed;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    padding: 12px 16px;
+    border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.75rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: #64748b;
     white-space: nowrap;
-    min-width: fit-content;
+    min-width: 60px;
+    flex-shrink: 0;
+    text-align: center;
 }
 
 .tab-btn:hover {
@@ -82,7 +92,7 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 1rem 0;
+    padding: 20px 0;
 }
 
 .tab-content {
@@ -95,8 +105,8 @@ body {
 
 .tab-content h2 {
     color: white;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
     text-align: center;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -104,9 +114,9 @@ body {
 /* Cards */
 .card {
     background: white;
-    border-radius: 15px;
+    border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -118,7 +128,7 @@ body {
 
 .card__header {
     background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    padding: 1rem;
+    padding: 16px;
     border-bottom: 1px solid #e2e8f0;
 }
 
@@ -126,19 +136,19 @@ body {
     margin: 0;
     color: #334155;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .card__body {
-    padding: 1rem;
+    padding: 20px;
 }
 
-/* Dashboard Cards Responsivo */
+/* Dashboard Cards */
 .dashboard-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
 .dashboard-card {
@@ -148,17 +158,17 @@ body {
 
 .dashboard-card .card__body {
     text-align: center;
-    padding: 1.5rem;
+    padding: 24px;
 }
 
 .dashboard-card h3 {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #64748b;
-    margin-bottom: 0.5rem;
+    margin-bottom: 12px;
 }
 
 .metric-value {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #334155;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -167,19 +177,19 @@ body {
     background-clip: text;
 }
 
-/* Charts Responsivo */
+/* Charts */
 .dashboard-charts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
 }
 
-/* Forms Responsivos */
+/* Forms Otimizados para Mobile */
 .form-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
 }
 
 .form-group {
@@ -188,21 +198,22 @@ body {
 }
 
 .form-group label {
-    margin-bottom: 0.3rem;
+    margin-bottom: 8px;
     font-weight: 600;
     color: #374151;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    padding: 0.6rem;
+    padding: 14px;
     border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 10px;
+    font-size: 1rem;
     transition: all 0.3s ease;
     width: 100%;
+    min-height: 48px;
 }
 
 .form-group input:focus,
@@ -213,20 +224,60 @@ body {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* Checkbox customizado */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 12px 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    margin-right: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: "✓";
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
 /* File Input */
 .file-input {
-    padding: 0.5rem;
+    padding: 12px;
     border: 2px dashed #e5e7eb;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-size: 1rem;
 }
 
 /* Buttons */
 .btn {
-    padding: 0.6rem 1.5rem;
+    padding: 14px 20px;
     border: none;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -234,12 +285,17 @@ body {
     display: inline-block;
     text-align: center;
     white-space: nowrap;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn--primary {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    width: 100%;
 }
 
 .btn--primary:hover {
@@ -258,10 +314,18 @@ body {
     transform: translateY(-1px);
 }
 
+.btn--secondary.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
 .btn--danger {
     background: linear-gradient(135deg, #ef4444, #dc2626);
     color: white;
     box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    padding: 10px;
+    min-height: 40px;
 }
 
 .btn--danger:hover {
@@ -272,9 +336,9 @@ body {
 /* Financial Summary */
 .financial-summary {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
 .summary-card.receita {
@@ -292,7 +356,7 @@ body {
 .summary-value {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 0.5rem;
+    margin-top: 8px;
 }
 
 .receita .summary-value {
@@ -310,39 +374,41 @@ body {
 /* Visualização Quinzenal */
 .quinzenal-view {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
 .quinzena-card {
     background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 16px;
+    border-radius: 12px;
     border: 1px solid #e2e8f0;
 }
 
 .quinzena-card h4 {
     color: #334155;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .quinzena-resumo {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 12px;
 }
 
 .receita-quinzena {
     color: #10b981;
     font-weight: 600;
+    font-size: 1rem;
 }
 
 .despesa-quinzena {
     color: #ef4444;
     font-weight: 600;
+    font-size: 1rem;
 }
 
 .saldo-quinzena {
@@ -353,46 +419,44 @@ body {
 
 .resumo-mensal {
     background: linear-gradient(135deg, #ffffff, #f8fafc);
-    padding: 1rem;
-    border-radius: 10px;
-    margin-top: 1rem;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 20px;
 }
 
 .resumo-mensal h4 {
     color: #334155;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     text-align: center;
+    font-size: 1.1rem;
 }
 
 /* Cartão Resumo */
 .cartao-resumo {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 .resumo-item {
     background: #f8fafc;
-    padding: 0.8rem;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 200px;
+    padding: 16px;
+    border-radius: 10px;
     text-align: center;
+    font-size: 1rem;
 }
 
 /* Cotação */
 .cotacao-display {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 16px;
 }
 
 .cotacao-display span {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #10b981;
 }
@@ -400,9 +464,14 @@ body {
 /* Filtros Mercado */
 .filtros-mercado {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 8px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
+}
+
+.filtros-mercado .btn {
+    flex: 1;
+    min-width: 80px;
 }
 
 /* Lists */
@@ -425,14 +494,13 @@ body {
 .dividend-item,
 .emotion-item {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0.8rem;
-    margin-bottom: 0.5rem;
+    flex-direction: column;
+    padding: 16px;
+    margin-bottom: 12px;
     background: #f8fafc;
-    border-radius: 8px;
+    border-radius: 12px;
     border-left: 4px solid #e2e8f0;
-    gap: 1rem;
+    gap: 12px;
 }
 
 .transaction-item.receita {
@@ -445,110 +513,93 @@ body {
 
 .item-info {
     flex-grow: 1;
-    min-width: 0;
 }
 
 .item-title {
     font-weight: 600;
     color: #334155;
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
     word-break: break-word;
 }
 
 .item-details {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: #64748b;
     word-break: break-word;
+    line-height: 1.4;
 }
 
 .item-value {
     font-weight: 700;
-    font-size: 1rem;
-    white-space: nowrap;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 8px 0;
 }
 
 .item-actions {
     display: flex;
-    gap: 0.3rem;
-    flex-shrink: 0;
+    gap: 8px;
+    justify-content: center;
 }
 
 .empty-message {
     text-align: center;
     color: #9ca3af;
     font-style: italic;
-    padding: 2rem;
-    font-size: 0.9rem;
+    padding: 40px 20px;
+    font-size: 1rem;
 }
 
 /* Shopping List Specific */
 .shopping-item.completed {
     opacity: 0.6;
-    text-decoration: line-through;
 }
 
 .shopping-item.completed .item-title {
     text-decoration: line-through;
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 768px) {
+/* Media Queries para Tablets */
+@media (min-width: 768px) {
     .header-content {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0.8rem 0;
-    }
-
-    .logo {
-        text-align: center;
-        font-size: 1.2rem;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .nav-tabs {
-        overflow-x: auto;
-        padding: 0.5rem 0;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .nav-tabs::-webkit-scrollbar {
-        display: none;
+        width: auto;
+        justify-content: flex-end;
     }
 
     .tab-btn {
-        flex-shrink: 0;
-        font-size: 0.7rem;
-        padding: 0.3rem 0.6rem;
-    }
-
-    .dashboard-cards {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .dashboard-charts {
-        grid-template-columns: 1fr;
+        font-size: 0.9rem;
+        padding: 8px 12px;
     }
 
     .form-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .financial-summary {
-        grid-template-columns: 1fr;
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .quinzenal-view {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .tab-content h2 {
-        font-size: 1.3rem;
+    .financial-summary {
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .metric-value {
-        font-size: 1.3rem;
+    .cartao-resumo {
+        flex-direction: row;
+    }
+
+    .cotacao-display {
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .transaction-item,
@@ -558,103 +609,24 @@ body {
     .investment-item,
     .dividend-item,
     .emotion-item {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
-    }
-
-    .item-actions {
-        justify-content: center;
-        margin-top: 0.5rem;
-    }
-
-    .cartao-resumo {
-        flex-direction: column;
-    }
-
-    .cotacao-display {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .filtros-mercado {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-
-    .main-content {
-        padding: 0.8rem 0;
-    }
-
-    .card__header,
-    .card__body {
-        padding: 0.8rem;
-    }
-
-    .dashboard-card .card__body {
-        padding: 1rem 0.8rem;
-    }
-
-    .dashboard-cards {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-    }
-
-    .tab-content h2 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-
-    .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        padding: 0.5rem;
-        font-size: 0.85rem;
-    }
-
-    .item-title {
-        font-size: 0.85rem;
-    }
-
-    .item-details {
-        font-size: 0.75rem;
+        flex-direction: row;
+        align-items: center;
     }
 
     .item-value {
-        font-size: 0.9rem;
+        text-align: right;
+        margin: 0;
+    }
+
+    .btn--primary {
+        width: auto;
     }
 }
 
-@media (max-width: 360px) {
-    .logo {
-        font-size: 1.1rem;
-    }
-
-    .tab-btn {
-        font-size: 0.65rem;
-        padding: 0.25rem 0.5rem;
-    }
-
-    .dashboard-card h3 {
-        font-size: 0.8rem;
-    }
-
-    .metric-value {
-        font-size: 1.2rem;
-    }
-
-    .summary-value {
-        font-size: 1.3rem;
+/* Media Queries para Desktop */
+@media (min-width: 1024px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -692,8 +664,8 @@ body {
 .dividends-list::-webkit-scrollbar,
 .emotions-list::-webkit-scrollbar,
 .nav-tabs::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
 }
 
 .transactions-list::-webkit-scrollbar-track,
@@ -705,7 +677,7 @@ body {
 .emotions-list::-webkit-scrollbar-track,
 .nav-tabs::-webkit-scrollbar-track {
     background: #f1f5f9;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 .transactions-list::-webkit-scrollbar-thumb,
@@ -717,7 +689,7 @@ body {
 .emotions-list::-webkit-scrollbar-thumb,
 .nav-tabs::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 .transactions-list::-webkit-scrollbar-thumb:hover,
