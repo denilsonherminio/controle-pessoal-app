@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
     renderInvestimentos();
     renderDividendos();
     renderEmocoes();
-    initCotacao();
     
     console.log('✅ App inicializado com sucesso!');
 });
@@ -249,29 +248,47 @@ function updateCategorias() {
     }
 }
 
-// ========== INICIALIZAR MERCADO ==========
+// ========== INICIALIZAR MERCADO (CORRIGIDO) ==========
 function initMercado() {
     const categoriaSelect = document.getElementById('categoria-mercado');
     const itemSelect = document.getElementById('item-mercado-select');
     
-    if (!categoriaSelect || !itemSelect) return;
+    if (!categoriaSelect || !itemSelect) {
+        console.log('❌ Elementos do mercado não encontrados');
+        return;
+    }
+
+    console.log('🛒 Inicializando mercado...');
     
+    // Event listener para mudança de categoria
     categoriaSelect.addEventListener('change', function() {
         const categoria = this.value;
-        itemSelect.innerHTML = '<option value="">Selecione um item</option>';
+        console.log('📋 Categoria selecionada:', categoria);
+        
+        // Limpar select de itens
+        itemSelect.innerHTML = '<option value="">Carregando...</option>';
         
         if (categoria && produtosMercado[categoria]) {
+            // Adicionar opção padrão
+            itemSelect.innerHTML = '<option value="">Selecione um item</option>';
             itemSelect.disabled = false;
+            
+            // Adicionar produtos da categoria
             produtosMercado[categoria].forEach(produto => {
                 const option = document.createElement('option');
                 option.value = produto;
                 option.textContent = produto;
                 itemSelect.appendChild(option);
             });
+            
+            console.log('✅ Produtos carregados:', produtosMercado[categoria].length);
         } else {
+            itemSelect.innerHTML = '<option value="">Selecione a categoria primeiro</option>';
             itemSelect.disabled = true;
         }
     });
+    
+    console.log('✅ Mercado inicializado');
 }
 
 // ========== MÊS ATUAL ==========
@@ -653,7 +670,7 @@ function removerGastoCartao(id) {
     }
 }
 
-// ========== LISTA DE MERCADO ==========
+// ========== LISTA DE MERCADO (CORRIGIDA) ==========
 function handleMercado(e) {
     e.preventDefault();
     
@@ -687,10 +704,12 @@ function handleMercado(e) {
     e.target.reset();
     
     // Reset dos selects
-    const itemSelect2 = document.getElementById('item-mercado-select');
-    if (itemSelect2) {
-        itemSelect2.innerHTML = '<option value="">Selecione a categoria primeiro</option>';
-        itemSelect2.disabled = true;
+    const categoriaSelect = document.getElementById('categoria-mercado');
+    const itemSelectReset = document.getElementById('item-mercado-select');
+    if (categoriaSelect && itemSelectReset) {
+        categoriaSelect.value = '';
+        itemSelectReset.innerHTML = '<option value="">Selecione a categoria primeiro</option>';
+        itemSelectReset.disabled = true;
     }
     
     console.log('✅ Item adicionado ao mercado:', novoItem);
@@ -751,6 +770,11 @@ function getCategoriaIcon(categoria) {
 
 function filtrarMercado(filtro) {
     const itens = document.querySelectorAll('.shopping-item');
+    const botoes = document.querySelectorAll('.filtros-mercado .btn');
+    
+    // Atualizar botões ativos
+    botoes.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
     
     itens.forEach(item => {
         if (filtro === 'todos') {
@@ -997,19 +1021,6 @@ function removerRegistroAtividade(id) {
 }
 
 // ========== INVESTIMENTOS COM COTAÇÃO ==========
-function initCotacao() {
-    inicializarCotacao();
-    
-    // Atualizar conversão quando campos mudarem
-    const valorInput = document.getElementById('valor-investimento');
-    const moedaInput = document.getElementById('moeda-investimento');
-    
-    if (valorInput && moedaInput) {
-        valorInput.addEventListener('input', atualizarConversaoMoeda);
-        moedaInput.addEventListener('change', atualizarConversaoMoeda);
-    }
-}
-
 function handleInvestimento(e) {
     e.preventDefault();
     
@@ -1024,7 +1035,8 @@ function handleInvestimento(e) {
         return;
     }
     
-    const valorEmReal = converterParaReal(valor, moeda);
+    const cotacaoAtual = parseFloat(document.getElementById('cotacao-dolar')?.textContent) || 5.0;
+    const valorEmReal = moeda === 'USD' ? valor * cotacaoAtual : valor;
     
     const investimento = {
         id: Date.now(),
@@ -1033,7 +1045,7 @@ function handleInvestimento(e) {
         valor,
         valorEmReal,
         moeda,
-        cotacaoUsada: moeda === 'USD' ? cotacaoDolar : 1,
+        cotacaoUsada: moeda === 'USD' ? cotacaoAtual : 1,
         data,
         dataRegistro: new Date().toLocaleDateString()
     };
@@ -1488,7 +1500,6 @@ function formatCurrency(value) {
 }
 
 function showNotification(message, type = 'success') {
-    // Implementar sistema de notificações se necessário
     console.log(`${type.toUpperCase()}: ${message}`);
 }
 
