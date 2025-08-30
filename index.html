@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Pessoal Pro - Seu App de Organização</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">💼 Controle Pessoal Pro</h1>
+                <nav class="nav-tabs">
+                    <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+                    <button class="tab-btn" data-tab="fluxo-caixa">💰 Fluxo</button>
+                    <button class="tab-btn" data-tab="cartao">💳 Cartão</button>
+                    <button class="tab-btn" data-tab="mercado">🛒 Mercado</button>
+                    <button class="tab-btn" data-tab="calorias">🍎 Calorias</button>
+                    <button class="tab-btn" data-tab="atividade">🏃 Atividade</button>
+                    <button class="tab-btn" data-tab="investimento">📈 Investimentos</button>
+                    <button class="tab-btn" data-tab="dividendos">💎 Dividendos</button>
+                    <button class="tab-btn" data-tab="emocoes">😊 Emoções</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <h2>📊 Dashboard Geral</h2>
+            <div class="dashboard-cards">
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>💰 Saldo Atual</h3>
+                        <div class="metric-value" id="saldo-atual">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>📊 Gastos do Mês</h3>
+                        <div class="metric-value" id="gastos-mes">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>📈 Total Investido</h3>
+                        <div class="metric-value" id="total-investido">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>🍎 Calorias Hoje</h3>
+                        <div class="metric-value" id="calorias-hoje">0 kcal</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-charts">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Receitas vs Despesas</h3>
+                        <canvas id="receitaDespesaChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Distribuição de Gastos</h3>
+                        <canvas id="gastosChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fluxo de Caixa Tab -->
+        <div id="fluxo-caixa" class="tab-content">
+            <h2>💰 Fluxo de Caixa</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Novo Lançamento</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-fluxo-caixa">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select id="tipo-transacao" required>
+                                    <option value="">Selecione</option>
+                                    <option value="receita">Receita</option>
+                                    <option value="despesa">Despesa</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quinzena</label>
+                                <select id="quinzena" required>
+                                    <option value="">Selecione</option>
+                                    <option value="primeira">1ª Quinzena (1-15)</option>
+                                    <option value="segunda">2ª Quinzena (16-31)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select id="categoria-transacao" required>
+                                    <option value="">Selecione o tipo primeiro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Valor (R$)</label>
+                                <input type="number" id="valor-transacao" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição</label>
+                            <input type
