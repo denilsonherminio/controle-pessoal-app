@@ -28,7 +28,7 @@
     </header>
 
     <main class="main-content container">
-        <!-- Dashboard Tab -->
+        <!-- DASHBOARD -->
         <div id="dashboard" class="tab-content active">
             <h2>📊 Dashboard Geral</h2>
             <div class="dashboard-cards">
@@ -57,7 +57,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="dashboard-charts">
                 <div class="card">
                     <div class="card__body">
@@ -74,7 +73,7 @@
             </div>
         </div>
 
-        <!-- Fluxo de Caixa Tab -->
+        <!-- FLUXO DE CAIXA -->
         <div id="fluxo-caixa" class="tab-content">
             <h2>💰 Fluxo de Caixa</h2>
             <div class="card">
@@ -115,4 +114,431 @@
                         </div>
                         <div class="form-group">
                             <label>Descrição</label>
-                            <input type
+                            <input type="text" id="descricao-transacao" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Adicionar Lançamento</button>
+                    </form>
+                </div>
+            </div>
+            <div class="financial-summary">
+                <div class="card summary-card receita">
+                    <div class="card__body">
+                        <h3>💰 Total Receitas</h3>
+                        <div class="summary-value" id="total-receitas">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="card summary-card despesa">
+                    <div class="card__body">
+                        <h3>💸 Total Despesas</h3>
+                        <div class="summary-value" id="total-despesas">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="card summary-card saldo">
+                    <div class="card__body">
+                        <h3>📊 Saldo</h3>
+                        <div class="summary-value" id="saldo-total">R$ 0,00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Histórico de Transações</h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-transacoes" class="transactions-list">
+                        <p class="empty-message">Nenhuma transação registrada ainda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARTÃO -->
+        <div id="cartao" class="tab-content">
+            <h2>💳 Cartão de Crédito</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Novo Gasto no Cartão</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-cartao">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Data de Vencimento</label>
+                                <select id="vencimento-cartao" required>
+                                    <option value="">Selecione</option>
+                                    <option value="primeira">1ª Quinzena</option>
+                                    <option value="segunda">2ª Quinzena</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select id="categoria-cartao" required>
+                                    <option value="">Selecione</option>
+                                    <option value="alimentacao">Alimentação</option>
+                                    <option value="compras">Compras</option>
+                                    <option value="combustivel">Combustível</option>
+                                    <option value="lazer">Lazer</option>
+                                    <option value="saude">Saúde</option>
+                                    <option value="educacao">Educação</option>
+                                    <option value="transporte">Transporte</option>
+                                    <option value="casa">Casa</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Valor (R$)</label>
+                                <input type="number" id="valor-cartao" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Estabelecimento</label>
+                                <input type="text" id="estabelecimento-cartao" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Adicionar Gasto</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>💳 Total do Cartão: <span id="total-cartao">R$ 0,00</span></h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-cartao" class="transactions-list">
+                        <p class="empty-message">Nenhum gasto no cartão registrado ainda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MERCADO -->
+        <div id="mercado" class="tab-content">
+            <h2>🛒 Lista de Mercado</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Adicionar Item</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-mercado">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Item</label>
+                                <input type="text" id="item-mercado" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select id="categoria-mercado" required>
+                                    <option value="">Selecione</option>
+                                    <option value="hortifruti">🥕 Hortifrúti</option>
+                                    <option value="acougue">🥩 Açougue</option>
+                                    <option value="laticínios">🥛 Laticínios</option>
+                                    <option value="padaria">🥖 Padaria</option>
+                                    <option value="mercearia">🍞 Mercearia</option>
+                                    <option value="limpeza">🧽 Limpeza</option>
+                                    <option value="higiene">🧴 Higiene</option>
+                                    <option value="bebidas">🥤 Bebidas</option>
+                                    <option value="outros">📦 Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Quantidade</label>
+                                <input type="text" id="quantidade-mercado" placeholder="Ex: 2kg, 1L, 3 unidades">
+                            </div>
+                            <div class="form-group">
+                                <label>Valor Estimado (R$)</label>
+                                <input type="number" id="valor-mercado" step="0.01">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Adicionar à Lista</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>📝 Sua Lista: <span id="total-mercado">R$ 0,00</span></h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-mercado" class="shopping-list">
+                        <p class="empty-message">Nenhum item na lista ainda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALORIAS -->
+        <div id="calorias" class="tab-content">
+            <h2>🍎 Contagem de Calorias</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Registrar Alimento</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-calorias">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Alimento</label>
+                                <input type="text" id="alimento-calorias" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Refeição</label>
+                                <select id="refeicao-calorias" required>
+                                    <option value="">Selecione</option>
+                                    <option value="cafe">☕ Café da Manhã</option>
+                                    <option value="almoco">🍽️ Almoço</option>
+                                    <option value="lanche">🍪 Lanche</option>
+                                    <option value="jantar">🍽️ Jantar</option>
+                                    <option value="ceia">🌙 Ceia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Quantidade (g)</label>
+                                <input type="number" id="quantidade-calorias" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Calorias (kcal/100g)</label>
+                                <input type="number" id="calorias-item" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Registrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>📊 Resumo do Dia: <span id="total-calorias-dia">0 kcal</span></h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-calorias" class="calories-list">
+                        <p class="empty-message">Nenhum alimento registrado hoje.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATIVIDADE -->
+        <div id="atividade" class="tab-content">
+            <h2>🏃 Atividade Física</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Registrar Atividade</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-atividade">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Atividade</label>
+                                <select id="tipo-atividade" required>
+                                    <option value="">Selecione</option>
+                                    <option value="caminhada">🚶 Caminhada</option>
+                                    <option value="corrida">🏃 Corrida</option>
+                                    <option value="academia">💪 Academia</option>
+                                    <option value="natacao">🏊 Natação</option>
+                                    <option value="ciclismo">🚴 Ciclismo</option>
+                                    <option value="yoga">🧘 Yoga</option>
+                                    <option value="futebol">⚽ Futebol</option>
+                                    <option value="outros">🏋️ Outros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Duração (min)</label>
+                                <input type="number" id="duracao-atividade" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Intensidade</label>
+                                <select id="intensidade-atividade" required>
+                                    <option value="">Selecione</option>
+                                    <option value="baixa">😌 Baixa</option>
+                                    <option value="moderada">😊 Moderada</option>
+                                    <option value="alta">😤 Alta</option>
+                                    <option value="muito-alta">🔥 Muito Alta</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Calorias Queimadas</label>
+                                <input type="number" id="calorias-queimadas" step="0.1">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Registrar Atividade</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>📊 Atividades de Hoje: <span id="total-calorias-queimadas">0 kcal</span></h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-atividades" class="activities-list">
+                        <p class="empty-message">Nenhuma atividade registrada hoje.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVESTIMENTO -->
+        <div id="investimento" class="tab-content">
+            <h2>📈 Investimentos</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Novo Investimento</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-investimento">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select id="tipo-investimento" required>
+                                    <option value="">Selecione</option>
+                                    <option value="acao">📊 Ação</option>
+                                    <option value="fii">🏢 FII</option>
+                                    <option value="cdb">💰 CDB</option>
+                                    <option value="tesouro">🏛️ Tesouro</option>
+                                    <option value="lci-lca">📈 LCI/LCA</option>
+                                    <option value="cripto">₿ Criptomoeda</option>
+                                    <option value="outros">📋 Outros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nome/Ticker</label>
+                                <input type="text" id="nome-investimento" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Valor Investido (R$)</label>
+                                <input type="number" id="valor-investimento" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" id="data-investimento" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Registrar Investimento</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>💼 Carteira: <span id="total-investimentos">R$ 0,00</span></h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-investimentos" class="investments-list">
+                        <p class="empty-message">Nenhum investimento registrado ainda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIVIDENDOS -->
+        <div id="dividendos" class="tab-content">
+            <h2>💎 Dividendos</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Registrar Dividendo</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-dividendos">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ativo</label>
+                                <input type="text" id="ativo-dividendo" required placeholder="Ex: ITSA4, HGLG11">
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select id="tipo-dividendo" required>
+                                    <option value="">Selecione</option>
+                                    <option value="dividendo">💰 Dividendo</option>
+                                    <option value="jcp">💼 JCP</option>
+                                    <option value="rendimento">🏢 Rendimento FII</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Valor Recebido (R$)</label>
+                                <input type="number" id="valor-dividendo" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" id="data-dividendo" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Registrar Dividendo</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>💎 Total Recebido: <span id="total-dividendos">R$ 0,00</span></h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-dividendos" class="dividends-list">
+                        <p class="empty-message">Nenhum dividendo registrado ainda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMOÇÕES -->
+        <div id="emocoes" class="tab-content">
+            <h2>😊 Minhas Emoções</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3>Como você está se sentindo hoje?</h3>
+                </div>
+                <div class="card__body">
+                    <form id="form-emocoes">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Humor</label>
+                                <select id="humor-emocao" required>
+                                    <option value="">Como está seu dia?</option>
+                                    <option value="muito-feliz">😄 Muito Feliz</option>
+                                    <option value="feliz">😊 Feliz</option>
+                                    <option value="neutro">😐 Neutro</option>
+                                    <option value="triste">😞 Triste</option>
+                                    <option value="muito-triste">😢 Muito Triste</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Energia</label>
+                                <select id="energia-emocao" required>
+                                    <option value="">Nível de energia</option>
+                                    <option value="muito-alta">⚡ Muito Alta</option>
+                                    <option value="alta">🔋 Alta</option>
+                                    <option value="media">🔌 Média</option>
+                                    <option value="baixa">🪫 Baixa</option>
+                                    <option value="muito-baixa">😴 Muito Baixa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>O que aconteceu hoje?</label>
+                            <textarea id="nota-emocao" rows="3" placeholder="Descreva seu dia, sentimentos, conquistas..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Registrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">
+                    <h3>📖 Histórico Emocional</h3>
+                </div>
+                <div class="card__body">
+                    <div id="lista-emocoes" class="emotions-list">
+                        <p class="empty-message">Nenhum registro emocional ainda. Comece hoje!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
