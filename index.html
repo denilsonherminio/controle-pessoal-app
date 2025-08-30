@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Pessoal Pro - Seu App de Organização</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Controle Pessoal Pro</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -13,15 +13,15 @@
             <div class="header-content">
                 <h1 class="logo">💼 Controle Pessoal Pro</h1>
                 <nav class="nav-tabs">
-                    <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
-                    <button class="tab-btn" data-tab="fluxo-caixa">💰 Fluxo</button>
-                    <button class="tab-btn" data-tab="cartao">💳 Cartão</button>
-                    <button class="tab-btn" data-tab="mercado">🛒 Mercado</button>
-                    <button class="tab-btn" data-tab="calorias">🍎 Calorias</button>
-                    <button class="tab-btn" data-tab="atividade">🏃 Atividade</button>
-                    <button class="tab-btn" data-tab="investimento">📈 Investimentos</button>
-                    <button class="tab-btn" data-tab="dividendos">💎 Dividendos</button>
-                    <button class="tab-btn" data-tab="emocoes">😊 Emoções</button>
+                    <button class="tab-btn active" data-tab="dashboard">📊</button>
+                    <button class="tab-btn" data-tab="fluxo-caixa">💰</button>
+                    <button class="tab-btn" data-tab="cartao">💳</button>
+                    <button class="tab-btn" data-tab="mercado">🛒</button>
+                    <button class="tab-btn" data-tab="calorias">🍎</button>
+                    <button class="tab-btn" data-tab="atividade">🏃</button>
+                    <button class="tab-btn" data-tab="investimento">📈</button>
+                    <button class="tab-btn" data-tab="dividendos">💎</button>
+                    <button class="tab-btn" data-tab="emocoes">😊</button>
                 </nav>
             </div>
         </div>
@@ -167,8 +167,9 @@
                             <input type="text" id="descricao-transacao" required>
                         </div>
                         <div class="form-group">
-                            <label>
+                            <label class="checkbox-label">
                                 <input type="checkbox" id="recorrente-checkbox">
+                                <span class="checkmark"></span>
                                 Lançamento recorrente (repetir nos próximos meses)
                             </label>
                         </div>
@@ -351,43 +352,39 @@
                 </div>
                 <div class="card__body">
                     <form id="form-mercado">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Categoria</label>
-                                <select id="categoria-mercado" required>
-                                    <option value="">Selecione</option>
-                                    <option value="hortifruti">🥕 Hortifrúti</option>
-                                    <option value="acougue">🥩 Açougue</option>
-                                    <option value="laticínios">🥛 Laticínios</option>
-                                    <option value="padaria">🥖 Padaria</option>
-                                    <option value="mercearia">🍞 Mercearia</option>
-                                    <option value="limpeza">🧽 Limpeza</option>
-                                    <option value="higiene">🧴 Higiene</option>
-                                    <option value="bebidas">🥤 Bebidas</option>
-                                    <option value="outros">📦 Outros</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Item</label>
-                                <select id="item-mercado-select" disabled>
-                                    <option value="">Selecione a categoria primeiro</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select id="categoria-mercado" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="hortifruti">🥕 Hortifrúti</option>
+                                <option value="acougue">🥩 Açougue</option>
+                                <option value="laticínios">🥛 Laticínios</option>
+                                <option value="padaria">🥖 Padaria</option>
+                                <option value="mercearia">🍞 Mercearia</option>
+                                <option value="limpeza">🧽 Limpeza</option>
+                                <option value="higiene">🧴 Higiene</option>
+                                <option value="bebidas">🥤 Bebidas</option>
+                                <option value="outros">📦 Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Item</label>
+                            <select id="item-mercado-select" required>
+                                <option value="">Selecione a categoria primeiro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Item Personalizado (opcional)</label>
+                            <input type="text" id="item-personalizado" placeholder="Digite um item não listado">
                         </div>
                         <div class="form-row">
-                            <div class="form-group">
-                                <label>Item Personalizado (opcional)</label>
-                                <input type="text" id="item-personalizado" placeholder="Digite um item não listado">
-                            </div>
                             <div class="form-group">
                                 <label>Quantidade</label>
-                                <input type="text" id="quantidade-mercado" placeholder="Ex: 2kg, 1L, 3 unidades">
+                                <input type="text" id="quantidade-mercado" placeholder="Ex: 2kg, 1L, 3 unidades" value="1 unidade">
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group">
                                 <label>Valor Estimado (R$)</label>
-                                <input type="number" id="valor-mercado" step="0.01">
+                                <input type="number" id="valor-mercado" step="0.01" value="0">
                             </div>
                         </div>
                         <button type="submit" class="btn btn--primary">Adicionar à Lista</button>
@@ -400,7 +397,7 @@
                 </div>
                 <div class="card__body">
                     <div class="filtros-mercado">
-                        <button class="btn btn--secondary" onclick="filtrarMercado('todos')">Todos</button>
+                        <button class="btn btn--secondary active" onclick="filtrarMercado('todos')">Todos</button>
                         <button class="btn btn--secondary" onclick="filtrarMercado('pendente')">Pendentes</button>
                         <button class="btn btn--secondary" onclick="filtrarMercado('comprado')">Comprados</button>
                     </div>
