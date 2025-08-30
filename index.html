@@ -73,9 +73,59 @@
             </div>
         </div>
 
-        <!-- FLUXO DE CAIXA -->
+        <!-- FLUXO DE CAIXA APRIMORADO -->
         <div id="fluxo-caixa" class="tab-content">
             <h2>💰 Fluxo de Caixa</h2>
+            
+            <!-- Upload de Planilha -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>📥 Importar Planilha</h3>
+                </div>
+                <div class="card__body">
+                    <input type="file" id="upload-planilha" accept=".csv,.xlsx,.xls" class="file-input">
+                    <button id="processar-upload" class="btn btn--secondary">📤 Processar Arquivo</button>
+                    <small>Formatos aceitos: CSV, Excel (.xlsx, .xls)</small>
+                </div>
+            </div>
+
+            <!-- Seletor de Mês -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>📅 Selecionar Período</h3>
+                </div>
+                <div class="card__body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Mês</label>
+                            <select id="mes-fluxo">
+                                <option value="1">Janeiro</option>
+                                <option value="2">Fevereiro</option>
+                                <option value="3">Março</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Maio</option>
+                                <option value="6">Junho</option>
+                                <option value="7">Julho</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setembro</option>
+                                <option value="10">Outubro</option>
+                                <option value="11">Novembro</option>
+                                <option value="12">Dezembro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ano</label>
+                            <select id="ano-fluxo">
+                                <option value="2024">2024</option>
+                                <option value="2025" selected>2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card__header">
                     <h3>Novo Lançamento</h3>
@@ -116,30 +166,79 @@
                             <label>Descrição</label>
                             <input type="text" id="descricao-transacao" required>
                         </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="recorrente-checkbox">
+                                Lançamento recorrente (repetir nos próximos meses)
+                            </label>
+                        </div>
                         <button type="submit" class="btn btn--primary">Adicionar Lançamento</button>
                     </form>
                 </div>
             </div>
-            <div class="financial-summary">
-                <div class="card summary-card receita">
-                    <div class="card__body">
-                        <h3>💰 Total Receitas</h3>
-                        <div class="summary-value" id="total-receitas">R$ 0,00</div>
-                    </div>
+
+            <!-- Visualização Quinzenal -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>📊 Visão Quinzenal - <span id="periodo-atual">Agosto 2025</span></h3>
                 </div>
-                <div class="card summary-card despesa">
-                    <div class="card__body">
-                        <h3>💸 Total Despesas</h3>
-                        <div class="summary-value" id="total-despesas">R$ 0,00</div>
+                <div class="card__body">
+                    <div class="quinzenal-view">
+                        <div class="quinzena-card">
+                            <h4>1ª Quinzena (1-15)</h4>
+                            <div class="quinzena-resumo">
+                                <div class="receita-quinzena">
+                                    <span>Receitas: R$ <span id="receita-q1">0,00</span></span>
+                                </div>
+                                <div class="despesa-quinzena">
+                                    <span>Despesas: R$ <span id="despesa-q1">0,00</span></span>
+                                </div>
+                                <div class="saldo-quinzena">
+                                    <span>Saldo: R$ <span id="saldo-q1">0,00</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quinzena-card">
+                            <h4>2ª Quinzena (16-31)</h4>
+                            <div class="quinzena-resumo">
+                                <div class="receita-quinzena">
+                                    <span>Receitas: R$ <span id="receita-q2">0,00</span></span>
+                                </div>
+                                <div class="despesa-quinzena">
+                                    <span>Despesas: R$ <span id="despesa-q2">0,00</span></span>
+                                </div>
+                                <div class="saldo-quinzena">
+                                    <span>Saldo: R$ <span id="saldo-q2">0,00</span></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card summary-card saldo">
-                    <div class="card__body">
-                        <h3>📊 Saldo</h3>
-                        <div class="summary-value" id="saldo-total">R$ 0,00</div>
+                    <div class="resumo-mensal">
+                        <h4>Resumo do Mês</h4>
+                        <div class="financial-summary">
+                            <div class="card summary-card receita">
+                                <div class="card__body">
+                                    <h3>💰 Total Receitas</h3>
+                                    <div class="summary-value" id="total-receitas">R$ 0,00</div>
+                                </div>
+                            </div>
+                            <div class="card summary-card despesa">
+                                <div class="card__body">
+                                    <h3>💸 Total Despesas</h3>
+                                    <div class="summary-value" id="total-despesas">R$ 0,00</div>
+                                </div>
+                            </div>
+                            <div class="card summary-card saldo">
+                                <div class="card__body">
+                                    <h3>📊 Saldo Final</h3>
+                                    <div class="summary-value" id="saldo-total">R$ 0,00</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card__header">
                     <h3>Histórico de Transações</h3>
@@ -152,7 +251,7 @@
             </div>
         </div>
 
-        <!-- CARTÃO -->
+        <!-- CARTÃO COM PARCELAMENTO -->
         <div id="cartao" class="tab-content">
             <h2>💳 Cartão de Crédito</h2>
             <div class="card">
@@ -188,7 +287,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Valor (R$)</label>
+                                <label>Valor Total (R$)</label>
                                 <input type="number" id="valor-cartao" step="0.01" required>
                             </div>
                             <div class="form-group">
@@ -196,15 +295,46 @@
                                 <input type="text" id="estabelecimento-cartao" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn--primary">Adicionar Gasto</button>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Parcelas</label>
+                                <select id="parcelas-cartao" required>
+                                    <option value="1">1x (à vista)</option>
+                                    <option value="2">2x</option>
+                                    <option value="3">3x</option>
+                                    <option value="4">4x</option>
+                                    <option value="5">5x</option>
+                                    <option value="6">6x</option>
+                                    <option value="7">7x</option>
+                                    <option value="8">8x</option>
+                                    <option value="9">9x</option>
+                                    <option value="10">10x</option>
+                                    <option value="11">11x</option>
+                                    <option value="12">12x</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Valor da Parcela</label>
+                                <input type="text" id="valor-parcela-display" readonly>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Adicionar Gasto Parcelado</button>
                     </form>
                 </div>
             </div>
             <div class="card">
                 <div class="card__header">
-                    <h3>💳 Total do Cartão: <span id="total-cartao">R$ 0,00</span></h3>
+                    <h3>💳 Resumo do Cartão</h3>
                 </div>
                 <div class="card__body">
+                    <div class="cartao-resumo">
+                        <div class="resumo-item">
+                            <span>Total Atual: <strong id="total-cartao">R$ 0,00</strong></span>
+                        </div>
+                        <div class="resumo-item">
+                            <span>Parcelas Futuras: <strong id="parcelas-futuras">R$ 0,00</strong></span>
+                        </div>
+                    </div>
                     <div id="lista-cartao" class="transactions-list">
                         <p class="empty-message">Nenhum gasto no cartão registrado ainda.</p>
                     </div>
@@ -212,7 +342,7 @@
             </div>
         </div>
 
-        <!-- MERCADO -->
+        <!-- MERCADO COM LISTA BRASILEIRA -->
         <div id="mercado" class="tab-content">
             <h2>🛒 Lista de Mercado</h2>
             <div class="card">
@@ -222,10 +352,6 @@
                 <div class="card__body">
                     <form id="form-mercado">
                         <div class="form-row">
-                            <div class="form-group">
-                                <label>Item</label>
-                                <input type="text" id="item-mercado" required>
-                            </div>
                             <div class="form-group">
                                 <label>Categoria</label>
                                 <select id="categoria-mercado" required>
@@ -241,12 +367,24 @@
                                     <option value="outros">📦 Outros</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Item</label>
+                                <select id="item-mercado-select" disabled>
+                                    <option value="">Selecione a categoria primeiro</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group">
+                                <label>Item Personalizado (opcional)</label>
+                                <input type="text" id="item-personalizado" placeholder="Digite um item não listado">
+                            </div>
                             <div class="form-group">
                                 <label>Quantidade</label>
                                 <input type="text" id="quantidade-mercado" placeholder="Ex: 2kg, 1L, 3 unidades">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
                                 <label>Valor Estimado (R$)</label>
                                 <input type="number" id="valor-mercado" step="0.01">
@@ -261,6 +399,11 @@
                     <h3>📝 Sua Lista: <span id="total-mercado">R$ 0,00</span></h3>
                 </div>
                 <div class="card__body">
+                    <div class="filtros-mercado">
+                        <button class="btn btn--secondary" onclick="filtrarMercado('todos')">Todos</button>
+                        <button class="btn btn--secondary" onclick="filtrarMercado('pendente')">Pendentes</button>
+                        <button class="btn btn--secondary" onclick="filtrarMercado('comprado')">Comprados</button>
+                    </div>
                     <div id="lista-mercado" class="shopping-list">
                         <p class="empty-message">Nenhum item na lista ainda.</p>
                     </div>
@@ -381,9 +524,23 @@
             </div>
         </div>
 
-        <!-- INVESTIMENTO -->
+        <!-- INVESTIMENTO COM COTAÇÃO -->
         <div id="investimento" class="tab-content">
             <h2>📈 Investimentos</h2>
+            
+            <!-- Cotação do Dólar -->
+            <div class="card">
+                <div class="card__header">
+                    <h3>💵 Cotação Atual do Dólar</h3>
+                </div>
+                <div class="card__body">
+                    <div class="cotacao-display">
+                        <span>USD/BRL: R$ <span id="cotacao-dolar">5,00</span></span>
+                        <button id="atualizar-cotacao" class="btn btn--secondary">🔄 Atualizar</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card__header">
                     <h3>Novo Investimento</h3>
@@ -401,6 +558,7 @@
                                     <option value="tesouro">🏛️ Tesouro</option>
                                     <option value="lci-lca">📈 LCI/LCA</option>
                                     <option value="cripto">₿ Criptomoeda</option>
+                                    <option value="exterior">🌎 Exterior (USD)</option>
                                     <option value="outros">📋 Outros</option>
                                 </select>
                             </div>
@@ -411,12 +569,25 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Valor Investido (R$)</label>
+                                <label>Valor Investido</label>
                                 <input type="number" id="valor-investimento" step="0.01" required>
                             </div>
                             <div class="form-group">
+                                <label>Moeda</label>
+                                <select id="moeda-investimento">
+                                    <option value="BRL">Real (R$)</option>
+                                    <option value="USD">Dólar (US$)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
                                 <label>Data</label>
                                 <input type="date" id="data-investimento" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Valor em Reais</label>
+                                <input type="text" id="valor-real-display" readonly>
                             </div>
                         </div>
                         <button type="submit" class="btn btn--primary">Registrar Investimento</button>
@@ -539,6 +710,7 @@
         </div>
     </main>
 
+    <script src="cotacao.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
