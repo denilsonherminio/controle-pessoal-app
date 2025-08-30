@@ -10,15 +10,16 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #333;
     min-height: 100vh;
+    line-height: 1.6;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
-/* Header */
+/* Header Responsivo */
 .header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -38,34 +39,38 @@ body {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #667eea;
     margin: 0;
+    white-space: nowrap;
 }
 
 .nav-tabs {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .tab-btn {
     background: transparent;
     border: 2px solid #e0e6ed;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: #64748b;
+    white-space: nowrap;
+    min-width: fit-content;
 }
 
 .tab-btn:hover {
     border-color: #667eea;
     color: #667eea;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .tab-btn.active {
@@ -77,7 +82,7 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .tab-content {
@@ -90,8 +95,8 @@ body {
 
 .tab-content h2 {
     color: white;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
     text-align: center;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -99,21 +104,21 @@ body {
 /* Cards */
 .card {
     background: white;
-    border-radius: 20px;
+    border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .card__header {
     background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    padding: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid #e2e8f0;
 }
 
@@ -121,18 +126,19 @@ body {
     margin: 0;
     color: #334155;
     font-weight: 600;
+    font-size: 1rem;
 }
 
 .card__body {
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
-/* Dashboard Cards */
+/* Dashboard Cards Responsivo */
 .dashboard-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .dashboard-card {
@@ -142,17 +148,17 @@ body {
 
 .dashboard-card .card__body {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 .dashboard-card h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #64748b;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .metric-value {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #334155;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -161,17 +167,17 @@ body {
     background-clip: text;
 }
 
-/* Charts */
+/* Charts Responsivo */
 .dashboard-charts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
-/* Forms */
+/* Forms Responsivos */
 .form-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-bottom: 1rem;
 }
@@ -182,19 +188,21 @@ body {
 }
 
 .form-group label {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     font-weight: 600;
     color: #374151;
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    padding: 0.75rem;
+    padding: 0.6rem;
     border: 2px solid #e5e7eb;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .form-group input:focus,
@@ -205,18 +213,27 @@ body {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* File Input */
+.file-input {
+    padding: 0.5rem;
+    border: 2px dashed #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
 /* Buttons */
 .btn {
-    padding: 0.75rem 2rem;
+    padding: 0.6rem 1.5rem;
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    white-space: nowrap;
 }
 
 .btn--primary {
@@ -238,7 +255,7 @@ body {
 
 .btn--secondary:hover {
     background: #e2e8f0;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .btn--danger {
@@ -255,25 +272,25 @@ body {
 /* Financial Summary */
 .financial-summary {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .summary-card.receita {
-    border-left: 5px solid #10b981;
+    border-left: 4px solid #10b981;
 }
 
 .summary-card.despesa {
-    border-left: 5px solid #ef4444;
+    border-left: 4px solid #ef4444;
 }
 
 .summary-card.saldo {
-    border-left: 5px solid #3b82f6;
+    border-left: 4px solid #3b82f6;
 }
 
 .summary-value {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-top: 0.5rem;
 }
@@ -288,6 +305,104 @@ body {
 
 .saldo .summary-value {
     color: #3b82f6;
+}
+
+/* Visualização Quinzenal */
+.quinzenal-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.quinzena-card {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.quinzena-card h4 {
+    color: #334155;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.quinzena-resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.receita-quinzena {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.despesa-quinzena {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.saldo-quinzena {
+    color: #3b82f6;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.resumo-mensal {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.resumo-mensal h4 {
+    color: #334155;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Cartão Resumo */
+.cartao-resumo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.resumo-item {
+    background: #f8fafc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+/* Cotação */
+.cotacao-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cotacao-display span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #10b981;
+}
+
+/* Filtros Mercado */
+.filtros-mercado {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 /* Lists */
@@ -311,12 +426,13 @@ body {
 .emotion-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+    align-items: flex-start;
+    padding: 0.8rem;
     margin-bottom: 0.5rem;
     background: #f8fafc;
-    border-radius: 10px;
+    border-radius: 8px;
     border-left: 4px solid #e2e8f0;
+    gap: 1rem;
 }
 
 .transaction-item.receita {
@@ -329,27 +445,33 @@ body {
 
 .item-info {
     flex-grow: 1;
+    min-width: 0;
 }
 
 .item-title {
     font-weight: 600;
     color: #334155;
     margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    word-break: break-word;
 }
 
 .item-details {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     color: #64748b;
+    word-break: break-word;
 }
 
 .item-value {
     font-weight: 700;
-    font-size: 1.125rem;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .item-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
+    flex-shrink: 0;
 }
 
 .empty-message {
@@ -357,6 +479,7 @@ body {
     color: #9ca3af;
     font-style: italic;
     padding: 2rem;
+    font-size: 0.9rem;
 }
 
 /* Shopping List Specific */
@@ -369,28 +492,39 @@ body {
     text-decoration: line-through;
 }
 
-/* Responsive */
+/* Responsive Breakpoints */
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
         align-items: stretch;
+        padding: 0.8rem 0;
+    }
+
+    .logo {
+        text-align: center;
+        font-size: 1.2rem;
     }
 
     .nav-tabs {
-        justify-content: center;
         overflow-x: auto;
         padding: 0.5rem 0;
-        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+        display: none;
     }
 
     .tab-btn {
         flex-shrink: 0;
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
     }
 
     .dashboard-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .dashboard-charts {
@@ -405,31 +539,16 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .quinzenal-view {
+        grid-template-columns: 1fr;
+    }
+
     .tab-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .metric-value {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 1rem;
-    }
-
-    .main-content {
-        padding: 1rem 0;
-    }
-
-    .card__header,
-    .card__body {
-        padding: 1rem;
-    }
-
-    .dashboard-card .card__body {
-        padding: 1.5rem 1rem;
+        font-size: 1.3rem;
     }
 
     .transaction-item,
@@ -447,6 +566,95 @@ body {
     .item-actions {
         justify-content: center;
         margin-top: 0.5rem;
+    }
+
+    .cartao-resumo {
+        flex-direction: column;
+    }
+
+    .cotacao-display {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .filtros-mercado {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .main-content {
+        padding: 0.8rem 0;
+    }
+
+    .card__header,
+    .card__body {
+        padding: 0.8rem;
+    }
+
+    .dashboard-card .card__body {
+        padding: 1rem 0.8rem;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .tab-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .item-title {
+        font-size: 0.85rem;
+    }
+
+    .item-details {
+        font-size: 0.75rem;
+    }
+
+    .item-value {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .tab-btn {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .dashboard-card h3 {
+        font-size: 0.8rem;
+    }
+
+    .metric-value {
+        font-size: 1.2rem;
+    }
+
+    .summary-value {
+        font-size: 1.3rem;
     }
 }
 
@@ -482,8 +690,10 @@ body {
 .activities-list::-webkit-scrollbar,
 .investments-list::-webkit-scrollbar,
 .dividends-list::-webkit-scrollbar,
-.emotions-list::-webkit-scrollbar {
-    width: 6px;
+.emotions-list::-webkit-scrollbar,
+.nav-tabs::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
 }
 
 .transactions-list::-webkit-scrollbar-track,
@@ -492,9 +702,10 @@ body {
 .activities-list::-webkit-scrollbar-track,
 .investments-list::-webkit-scrollbar-track,
 .dividends-list::-webkit-scrollbar-track,
-.emotions-list::-webkit-scrollbar-track {
+.emotions-list::-webkit-scrollbar-track,
+.nav-tabs::-webkit-scrollbar-track {
     background: #f1f5f9;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .transactions-list::-webkit-scrollbar-thumb,
@@ -503,9 +714,10 @@ body {
 .activities-list::-webkit-scrollbar-thumb,
 .investments-list::-webkit-scrollbar-thumb,
 .dividends-list::-webkit-scrollbar-thumb,
-.emotions-list::-webkit-scrollbar-thumb {
+.emotions-list::-webkit-scrollbar-thumb,
+.nav-tabs::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .transactions-list::-webkit-scrollbar-thumb:hover,
@@ -514,6 +726,50 @@ body {
 .activities-list::-webkit-scrollbar-thumb:hover,
 .investments-list::-webkit-scrollbar-thumb:hover,
 .dividends-list::-webkit-scrollbar-thumb:hover,
-.emotions-list::-webkit-scrollbar-thumb:hover {
+.emotions-list::-webkit-scrollbar-thumb:hover,
+.nav-tabs::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #667eea;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Print Styles */
+@media print {
+    .header, .nav-tabs, .btn {
+        display: none !important;
+    }
+    
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
 }
