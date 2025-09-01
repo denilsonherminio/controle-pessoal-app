@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Financeiro Pessoal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="py-3 mb-4 border-bottom">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-wallet text-primary me-2 fs-3"></i>
+                <h1 class="h3 mb-0">Controle Financeiro Pessoal</h1>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs nav-fill mb-4" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button" role="tab">
+                    <i class="fas fa-tachometer-alt me-1"></i> Dashboard
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="fluxo-caixa-tab" data-bs-toggle="tab" data-bs-target="#fluxo-caixa" type="button" role="tab">
+                    <i class="fas fa-exchange-alt me-1"></i> Fluxo de Caixa
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="cartao-credito-tab" data-bs-toggle="tab" data-bs-target="#cartao-credito" type="button" role="tab">
+                    <i class="fas fa-credit-card me-1"></i> Cartão de Crédito
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="lista-mercado-tab" data-bs-toggle="tab" data-bs-target="#lista-mercado" type="button" role="tab">
+                    <i class="fas fa-shopping-cart me-1"></i> Lista de Mercado
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="investimentos-tab" data-bs-toggle="tab" data-bs-target="#investimentos" type="button" role="tab">
+                    <i class="fas fa-chart-line me-1"></i> Investimentos
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="calorias-tab" data-bs-toggle="tab" data-bs-target="#calorias" type="button" role="tab">
+                    <i class="fas fa-utensils me-1"></i> Calorias
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="mainTabContent">
+            
+            <!-- Dashboard Tab -->
+            <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+                <!-- Summary Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Saldo Atual</h6>
+                                        <h4 class="mb-0" id="saldo-atual">R$ 0,00</h4>
+                                    </div>
+                                    <i class="fas fa-wallet fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-danger text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Gastos do Mês</h6>
+                                        <h4 class="mb-0" id="gastos-mes">R$ 0,00</h4>
+                                    </div>
+                                    <i class="fas fa-arrow-down fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Total Investido</h6>
+                                        <h4 class="mb-0" id="total-investido">R$ 0,00</h4>
+                                    </div>
+                                    <i class="fas fa-chart-line fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Calorias Hoje</h6>
+                                        <h4 class="mb-0" id="calorias-hoje">0 kcal</h4>
+                                    </div>
+                                    <i class="fas fa-fire fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Receitas vs Despesas</h5>
+                            </div>
+                            <div class="card-body" style="position: relative; height: 300px;">
+                                <canvas id="receitasDespesasChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Distribuição de Gastos</h5>
+                            </div>
+                            <div class="card-body" style="position: relative; height: 300px;">
+                                <canvas id="distribuicaoGastosChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fluxo de Caixa Tab -->
+            <div class="tab-pane fade" id="fluxo-caixa" role="tabpanel">
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <select class="form-select" id="ano-select">
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select" id="mes-select">
+                            <option value="8" selected>Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novoLancamentoModal">
+                            <i class="fas fa-plus me-1"></i> Novo Lançamento
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Receitas -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="fas fa-arrow-up me-2"></i>Receitas</h5>
+                            </div>
+                            <div class="card-body" id="receitas-lista">
+                                <!-- Receitas serão inseridas dinamicamente -->
+                            </div>
+                            <div class="card-footer">
+                                <strong>Total: <span id="total-receitas">R$ 0,00</span></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Despesas -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0"><i class="fas fa-arrow-down me-2"></i>Despesas</h5>
+                            </div>
+                            <div class="card-body" id="despesas-lista">
+                                <!-- Despesas serão inseridas dinamicamente -->
+                            </div>
+                            <div class="card-footer">
+                                <strong>Total: <span id="total-despesas">R$ 0,00</span></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Saldo e Investimentos -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Investimentos</h5>
+                            </div>
+                            <div class="card-body" id="investimentos-lista">
+                                <!-- Investimentos serão inseridos dinamicamente -->
+                            </div>
+                            <div class="card-footer">
+                                <strong>Total: <span id="total-investimentos">R$ 0,00</span></strong>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-3">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="fas fa-calculator me-2"></i>Saldo Disponível</h5>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="text-center mb-0" id="saldo-disponivel">R$ 0,00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cartão de Crédito Tab -->
+            <div class="tab-pane fade" id="cartao-credito" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Novo Gasto no Cartão</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="cartao-form">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Data</label>
+                                            <input type="date" class="form-control" id="cartao-data" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Categoria</label>
+                                            <select class="form-select" id="cartao-categoria" required>
+                                                <option value="">Selecione uma categoria</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Valor Total</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">R$</span>
+                                                <input type="number" class="form-control" id="cartao-valor" step="0.01" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Parcelas</label>
+                                            <select class="form-select" id="cartao-parcelas" required>
+                                                <option value="1">1x</option>
+                                                <option value="2">2x</option>
+                                                <option value="3">3x</option>
+                                                <option value="6">6x</option>
+                                                <option value="12">12x</option>
+                                                <option value="24">24x</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Estabelecimento</label>
+                                        <input type="text" class="form-control" id="cartao-estabelecimento" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Valor da Parcela</label>
+                                        <input type="text" class="form-control" id="valor-parcela" readonly>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus me-1"></i> Adicionar Gasto
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Resumo do Cartão</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <h6>Total Atual</h6>
+                                        <h4 class="text-primary" id="total-cartao-atual">R$ 0,00</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6>Próximas Parcelas</h6>
+                                        <h4 class="text-warning" id="proximas-parcelas">R$ 0,00</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h5 class="mb-0">Gastos Recentes</h5>
+                            </div>
+                            <div class="card-body" style="max-height: 300px; overflow-y: auto;" id="gastos-cartao-lista">
+                                <p class="text-muted text-center">Nenhum gasto registrado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Mercado Tab -->
+            <div class="tab-pane fade" id="lista-mercado" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Adicionar Item</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="mercado-form">
+                                    <div class="mb-3">
+                                        <label class="form-label">Categoria</label>
+                                        <select class="form-select" id="mercado-categoria">
+                                            <option value="">Selecione uma categoria</option>
+                                            <option value="hortifruti">🥕 Hortifrúti</option>
+                                            <option value="acougue">🥩 Açougue</option>
+                                            <option value="laticinios">🥛 Laticínios</option>
+                                            <option value="padaria">🥖 Padaria</option>
+                                            <option value="mercearia">🍞 Mercearia</option>
+                                            <option value="limpeza">🧽 Limpeza</option>
+                                            <option value="higiene">🧴 Higiene</option>
+                                            <option value="bebidas">🥤 Bebidas</option>
+                                            <option value="outros">📦 Outros</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Item</label>
+                                        <select class="form-select" id="mercado-item-predefinido">
+                                            <option value="">Selecione um item</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Item Personalizado</label>
+                                        <input type="text" class="form-control" id="mercado-item-custom" placeholder="Digite um item personalizado">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Quantidade</label>
+                                            <input type="text" class="form-control" id="mercado-quantidade" placeholder="ex: 2kg, 1un">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Valor Estimado</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">R$</span>
+                                                <input type="number" class="form-control" id="mercado-valor" step="0.01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus me-1"></i> Adicionar à Lista
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h5 class="mb-0">Lista de Compras</h5>
+                                <span class="badge bg-primary" id="total-itens">0 itens</span>
+                            </div>
+                            <div class="card-body" style="max-height: 400px; overflow-y: auto;" id="lista-compras">
+                                <p class="text-muted text-center">Nenhum item adicionado</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>Total Estimado: <span id="total-lista">R$ 0,00</span></strong>
+                                    <button class="btn btn-success btn-sm" id="finalizar-compras">
+                                        <i class="fas fa-check me-1"></i> Finalizar Compras
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investimentos Tab -->
+            <div class="tab-pane fade" id="investimentos" role="tabpanel">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <h5 class="mb-0">Cotação USD/BRL</h5>
+                                        <h3 class="text-primary">R$ <span id="cotacao-dolar">5,43</span></h3>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novoInvestimentoModal">
+                                            <i class="fas fa-plus me-1"></i> Novo Investimento
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">Resumo da Carteira</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 id="total-carteira">R$ 0,00</h3>
+                                <p class="mb-0">Total Investido</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Meus Investimentos</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Descrição</th>
+                                                <th>Valor (R$)</th>
+                                                <th>Data</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="investimentos-tabela">
+                                            <tr>
+                                                <td colspan="4" class="text-center text-muted">Nenhum investimento cadastrado</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calorias Tab -->
+            <div class="tab-pane fade" id="calorias" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Registrar Alimento</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="caloria-form">
+                                    <div class="mb-3">
+                                        <label class="form-label">Refeição</label>
+                                        <select class="form-select" id="refeicao" required>
+                                            <option value="">Selecione a refeição</option>
+                                            <option value="Café da Manhã">Café da Manhã</option>
+                                            <option value="Almoço">Almoço</option>
+                                            <option value="Lanche">Lanche</option>
+                                            <option value="Jantar">Jantar</option>
+                                            <option value="Ceia">Ceia</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Alimento</label>
+                                        <input type="text" class="form-control" id="alimento" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Calorias</label>
+                                        <input type="number" class="form-control" id="calorias-alimento" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus me-1"></i> Registrar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h5 class="mb-0">Consumo Diário</h5>
+                                <span class="badge bg-info" id="total-calorias-dia">0 kcal</span>
+                            </div>
+                            <div class="card-body" style="max-height: 400px; overflow-y: auto;" id="lista-calorias">
+                                <p class="text-muted text-center">Nenhum alimento registrado hoje</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo Lançamento -->
+    <div class="modal fade" id="novoLancamentoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo Lançamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="lancamento-form">
+                        <div class="mb-3">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" id="lancamento-tipo" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="receita">Receita</option>
+                                <option value="despesa">Despesa</option>
+                                <option value="investimento">Investimento</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="categoria-despesa" style="display: none;">
+                            <label class="form-label">Categoria</label>
+                            <select class="form-select" id="lancamento-categoria">
+                                <option value="">Selecione uma categoria</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <input type="text" class="form-control" id="lancamento-descricao" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Valor</label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" class="form-control" id="lancamento-valor" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Data</label>
+                            <input type="date" class="form-control" id="lancamento-data" required>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="lancamento-recorrente">
+                            <label class="form-check-label" for="lancamento-recorrente">
+                                Lançamento recorrente
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="lancamento-form" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo Investimento -->
+    <div class="modal fade" id="novoInvestimentoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo Investimento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="investimento-form">
+                        <div class="mb-3">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" id="investimento-tipo" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="Ação">Ação</option>
+                                <option value="FII">FII</option>
+                                <option value="CDB">CDB</option>
+                                <option value="Tesouro">Tesouro</option>
+                                <option value="LCI/LCA">LCI/LCA</option>
+                                <option value="Criptomoeda">Criptomoeda</option>
+                                <option value="Exterior">Exterior</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <input type="text" class="form-control" id="investimento-descricao" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Valor</label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" class="form-control" id="investimento-valor" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Data</label>
+                            <input type="date" class="form-control" id="investimento-data" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="investimento-form" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
